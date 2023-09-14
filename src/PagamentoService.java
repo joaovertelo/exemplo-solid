@@ -1,5 +1,3 @@
-package com.devertelo.solid;
-
 public class PagamentoService {
 
     public void realizarPagamento(Pagamento pagamento) {
