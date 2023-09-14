@@ -3,6 +3,7 @@ public class PagamentoService {
     public void realizarPagamento(Pagamento pagamento) {
 
         if (TipoPagamento.CREDITO.equals(pagamento.tipo())) {
+            validarAntifraude(pagamento);
             Long valorCredito = null;
             if (pagamento.parcela() == 1) {
                 valorCredito = (long) (pagamento.valor() * 1.1);
@@ -17,6 +18,12 @@ public class PagamentoService {
         }
 
         enviarComprovante(pagamento);
+    }
+
+    public void validarAntifraude(Pagamento pagamento) {
+        if (pagamento.valor() > 10000L) {
+            throw new RuntimeException("pagamento não aprovado pelo anti-fraude");
+        }
     }
 
     public void pagar(long valor, String conta) {
