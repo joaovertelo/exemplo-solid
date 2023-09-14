@@ -17,11 +17,11 @@ public class PagamentoService {
         enviarComprovante(pagamento);
     }
 
-    public void pagar(long valor, String conta) {
+    private void pagar(long valor, String conta) {
         System.out.println(valor + " pago para a conta " + conta);
     }
 
-    public void enviarComprovante(Pagamento pagamento) {
+    private void enviarComprovante(Pagamento pagamento) {
         System.out.println("Comprovante para o pagamento realizado no " + pagamento.tipo().toString() + " no valor de "
                 + pagamento.valor() + " enviado para a conta " + pagamento.conta());
     }
