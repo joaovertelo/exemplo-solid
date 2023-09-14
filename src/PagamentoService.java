@@ -2,28 +2,19 @@ public class PagamentoService {
 
     public void realizarPagamento(Pagamento pagamento) {
 
+        Long valorPagamento = null;
         if (TipoPagamento.CREDITO.equals(pagamento.tipo())) {
-            validarAntifraude(pagamento);
-            Long valorCredito = null;
             if (pagamento.parcela() == 1) {
-                valorCredito = (long) (pagamento.valor() * 1.1);
+                valorPagamento = (long) (pagamento.valor() * 1.1);
             } else {
-                valorCredito = (long) (pagamento.valor() * 1.2);
+                valorPagamento = (long) (pagamento.valor() * 1.2);
             }
-            pagar(valorCredito, pagamento.conta());
+        } else if (TipoPagamento.DEBITO.equals(pagamento.tipo())) {
+            valorPagamento = (long) (pagamento.valor() * 0.9);
         }
-        if (TipoPagamento.DEBITO.equals(pagamento.tipo())) {
-            long valorDebito = (long) (pagamento.valor() * 0.9);
-            pagar(valorDebito, pagamento.conta());
-        }
+        pagar(valorPagamento, pagamento.conta());
 
         enviarComprovante(pagamento);
-    }
-
-    public void validarAntifraude(Pagamento pagamento) {
-        if (pagamento.valor() > 10000L) {
-            throw new RuntimeException("pagamento não aprovado pelo anti-fraude");
-        }
     }
 
     public void pagar(long valor, String conta) {
