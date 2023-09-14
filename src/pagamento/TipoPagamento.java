@@ -1,3 +1,5 @@
+package pagamento;
+
 public enum TipoPagamento {
 
     CREDITO,

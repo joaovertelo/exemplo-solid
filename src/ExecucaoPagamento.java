@@ -1,3 +1,7 @@
+import pagamento.Pagamento;
+import pagamento.PagamentoService;
+import pagamento.TipoPagamento;
+
 public class ExecucaoPagamento {
 
     public static void main(String[] args) {
