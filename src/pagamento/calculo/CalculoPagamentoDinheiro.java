@@ -2,9 +2,9 @@ package pagamento.calculo;
 
 import pagamento.Pagamento;
 
-public class CalculoPagamentoDebito implements CalculoPagamento {
+public class CalculoPagamentoDinheiro implements CalculoPagamento {
     @Override
     public Long calcular(Pagamento pagamento) {
-        return null;
+        return (long) (pagamento.valor() * 0.9);
     }
 }

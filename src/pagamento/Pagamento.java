@@ -1,4 +1,9 @@
 package pagamento;
 
-public record Pagamento(long valor, int parcela, TipoPagamento tipo, String conta) {
+public interface Pagamento {
+    long valor();
+
+    TipoPagamento tipo();
+
+    String conta();
 }

@@ -1,12 +1,14 @@
-import pagamento.Pagamento;
-import pagamento.GatewayPagamento;
-import pagamento.TipoPagamento;
+import pagamento.*;
 
 public class ExecucaoPagamento {
 
     public static void main(String[] args) {
-        GatewayPagamento service = new GatewayPagamento();
 
-        service.realizarPagamento(new Pagamento(100l, 1, TipoPagamento.DEBITO, "101010"));
+
+        Pagamento pagamento = new PagamentoRequest(100l, TipoPagamento.DEBITO, "101010");
+
+        PagamentoService pagamentoService = GatewayPagamentoFactory.getPagamentoService(pagamento.tipo());
+
+        pagamentoService.realizarPagamento(pagamento);
     }
 }
